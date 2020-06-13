@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace TextAnalyzer.Web.ConsoleClient.Readers
@@ -8,16 +9,19 @@ namespace TextAnalyzer.Web.ConsoleClient.Readers
     {
         private bool _disposedValue = false;
 
-        public FileReader(string path)
+        public FileReader(string filePath)
         {
-            Path = path;
+            FilePath = filePath;
         }
 
-        public string Path { get; }
+        public string FilePath { get; }
 
         public Document Read()
         {
-            throw new NotImplementedException();
+            var name = Path.GetFileNameWithoutExtension(FilePath);
+            var text = File.ReadAllText(FilePath);
+
+            return new Document(name, text);
         }
 
         public void Dispose()

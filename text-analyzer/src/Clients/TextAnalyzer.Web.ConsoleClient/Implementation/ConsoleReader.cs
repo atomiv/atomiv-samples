@@ -10,7 +10,15 @@ namespace TextAnalyzer.Web.ConsoleClient.Readers
 
         public Document Read()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please write the Document Name: ");
+
+            var name = Console.ReadLine();
+
+            Console.WriteLine("Please write the Document Text: ");
+
+            var text = Console.ReadLine();
+
+            return new Document(name, text);
         }
 
         public void Dispose()
