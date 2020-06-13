@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace TextAnalyzer.Web.ConsoleClient.Readers
@@ -35,9 +38,34 @@ namespace TextAnalyzer.Web.ConsoleClient.Readers
 
         public Document Read()
         {
-            // TODO: Create DB connection read, close DB connection
+            var parameters = new
+            {
+                Name = DocumentName,
+            };
 
-            throw new NotImplementedException();
+            using(var connection = new SqlConnection(ConnectionString))
+            {
+                var query = $"SELECT {DocumentTextField} FROM {DocumentTableName}" +
+                    $"WHERE {DocumentNameField} = @DocumentName";
+
+                var documentRecords = connection
+                    .Query<DocumentRecord>(query, parameters)
+                    .ToList();
+
+                return documentRecords.Select(GetDocument).FirstOrDefault();
+            }
+        }
+
+        private Document GetDocument(DocumentRecord record)
+        {
+            return new Document(record.Name, record.Text);
+        }
+
+        private class DocumentRecord
+        {
+            public string Name { get; set; }
+
+            public string Text { get; set; }
         }
     }
 }

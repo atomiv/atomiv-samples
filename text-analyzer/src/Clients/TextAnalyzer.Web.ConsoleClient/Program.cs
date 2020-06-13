@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using TextAnalyzer.Core.Application.Commands.Documents;
 using TextAnalyzer.Core.Application.Queries.Customers;
+using TextAnalyzer.Web.ConsoleClient.Interface;
 using TextAnalyzer.Web.RestClient;
 using TextAnalyzer.Web.RestClient.Interface;
 
@@ -20,34 +21,19 @@ namespace TextAnalyzer.Web.ConsoleClient
             {
                 try
                 {
-                    Console.WriteLine("Hello World!");
+                    Console.WriteLine("Starting...");
 
-                    await ExecuteAsync(serviceProvider);
+                    var executor = serviceProvider.GetRequiredService<IExecutor>();
 
-                    Console.WriteLine("Finished");
+                    await executor.ExecuteAsync();
+
+                    Console.WriteLine("Finished.");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error {ex.Message}");
+                    Console.WriteLine($"Error has occurred. Details: {ex.Message}");
                 }
             }
-        }
-
-        private static async Task ExecuteAsync(ServiceProvider serviceProvider)
-        {
-            var api = serviceProvider.GetRequiredService<IApiClient>();
-
-            var request = new CreateDocumentCommand
-            {
-                Name = $"My doc {DateTime.Now.ToString()}",
-                Text = "This is some text",
-            };
-
-            var response = await api.Documents.CreateDocumentAsync(request);
-
-            Console.WriteLine($"Response is: {response.Data.WordCount}");
-
-            Console.ReadKey();
         }
     }
 }

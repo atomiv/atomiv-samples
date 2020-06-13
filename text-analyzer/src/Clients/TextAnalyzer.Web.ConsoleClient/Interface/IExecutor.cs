@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TextAnalyzer.Web.ConsoleClient.Interface
 {
-    public enum ReaderType
+    public interface IExecutor
     {
-        None = 0,
-        Console = 1,
-        Database = 2,
-        File = 3
+        Task ExecuteAsync();
     }
 }

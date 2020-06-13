@@ -9,16 +9,16 @@ namespace TextAnalyzer.Web.ConsoleClient
 {
     public class HttpClientFactory : IHttpClientFactory
     {
-        private readonly IOptions<ApiOptions> _options;
+        private readonly IOptions<AppOptions> _options;
 
-        public HttpClientFactory(IOptions<ApiOptions> options)
+        public HttpClientFactory(IOptions<AppOptions> options)
         {
             _options = options;
         }
 
         public HttpClient CreateClient(string name)
         {
-            var baseAddressUrl = _options.Value.Connection;
+            var baseAddressUrl = _options.Value.RestApi;
 
             var baseAddress = new Uri(baseAddressUrl);
 

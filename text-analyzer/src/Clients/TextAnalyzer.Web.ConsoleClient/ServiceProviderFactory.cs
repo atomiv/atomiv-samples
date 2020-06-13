@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Optivem.Atomiv.Core.Common.Serialization;
 using Optivem.Atomiv.Infrastructure.NewtonsoftJson;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
+using TextAnalyzer.Web.ConsoleClient.Interface;
 using TextAnalyzer.Web.RestClient;
 using TextAnalyzer.Web.RestClient.Interface;
 
@@ -14,6 +17,8 @@ namespace TextAnalyzer.Web.ConsoleClient
     public class ServiceProviderFactory
     {
         private const string DefaultEnvironment = "Production";
+
+        private const string ReaderFactoryKey = "ReaderFactory";
 
         public static ServiceProvider Create(string environment = null)
         {
@@ -38,7 +43,9 @@ namespace TextAnalyzer.Web.ConsoleClient
 
             var services = new ServiceCollection();
 
-            services.Configure<ApiOptions>(configuration.GetSection(ApiOptions.Api));
+            var appOptions = configuration.GetSection(AppOptions.Key);
+
+            services.Configure<AppOptions>(appOptions);
 
             services.AddSingleton<IJsonSerializer, JsonSerializer>();
 
@@ -48,6 +55,21 @@ namespace TextAnalyzer.Web.ConsoleClient
             services.AddHttpClient<IOrderControllerClient, OrderControllerClient>();
             services.AddHttpClient<IProductControllerClient, ProductControllerClient>();
             services.AddTransient<IApiClient, ApiClient>();
+
+            services.AddTransient<IExecutor, ConsoleExecutor>();
+
+            var readerFactoryName = appOptions.GetValue<string>(ReaderFactoryKey);
+
+            var assembly = Assembly.GetAssembly(typeof(ServiceProviderFactory));
+
+            var type = assembly.GetType($"TextAnalyzer.Web.ConsoleClient.Factories.{readerFactoryName}");
+
+            if(type == null)
+            {
+                throw new Exception($"Reader factory {readerFactoryName} is not recognized");
+            }
+
+            services.AddTransient(e => (IReaderFactory)Activator.CreateInstance(type));
 
             var serviceProvider = services.BuildServiceProvider();
 
