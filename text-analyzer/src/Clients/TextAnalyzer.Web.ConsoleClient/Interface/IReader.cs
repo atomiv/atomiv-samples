@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TextAnalyzer.Web.ConsoleClient
 {
-    public interface IReader : IDisposable
+    public interface IReader
     {
         Document Read();
     }
