@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\TextAnalyzer.Core.All\TextAnalyzer.Core.All.csproj" />
+    <ProjectReference Include="..\TextAnalyzer.Infrastructure.Domain.Persistence\TextAnalyzer.Infrastructure.Domain.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TextAnalyzer.Core.Application.Commands.Handlers\TextAnalyzer.Core.Application.Commands.Handlers.csproj" />
+    <ProjectReference Include="..\TextAnalyzer.Core.Application.Commands\TextAnalyzer.Core.Application.Commands.csproj" />
+    <ProjectReference Include="..\TextAnalyzer.Core.Application.Queries\TextAnalyzer.Core.Application.Queries.csproj" />
+    <ProjectReference Include="..\TextAnalyzer.Core.Application\TextAnalyzer.Core.Application.csproj" />
+    <ProjectReference Include="..\TextAnalyzer.Core.Common\TextAnalyzer.Core.Common.csproj" />
+    <ProjectReference Include="..\TextAnalyzer.Core.Domain\TextAnalyzer.Core.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
