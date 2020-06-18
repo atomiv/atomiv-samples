@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Customers\**" />
+    <Compile Remove="Orders\**" />
+    <EmbeddedResource Remove="Customers\**" />
+    <EmbeddedResource Remove="Orders\**" />
+    <None Remove="Customers\**" />
+    <None Remove="Orders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -14,11 +23,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Customers\" />
-    <Folder Include="Orders\" />
   </ItemGroup>
 
   <ItemGroup>

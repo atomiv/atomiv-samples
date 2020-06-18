@@ -35,9 +35,6 @@ namespace TextAnalyzer.Web.RestApi.IntegrationTest
 
             services.AddTransient<IHttpClientFactory, TestServerHttpClientFactory>();
             services.AddHttpClient<IDocumentControllerClient, DocumentControllerClient>();
-            services.AddHttpClient<ICustomerControllerClient, CustomerControllerClient>();
-            services.AddHttpClient<IOrderControllerClient, OrderControllerClient>();
-            services.AddHttpClient<IProductControllerClient, ProductControllerClient>();
             services.AddTransient<IApiClient, ApiClient>();
 
             var serviceProvider = services.BuildServiceProvider();

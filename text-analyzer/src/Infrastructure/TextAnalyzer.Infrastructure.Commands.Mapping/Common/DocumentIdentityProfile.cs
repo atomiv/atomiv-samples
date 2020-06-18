@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TextAnalyzer.Core.Domain.Documents;
 
 namespace TextAnalyzer.Infrastructure.Commands.Mapping.Common

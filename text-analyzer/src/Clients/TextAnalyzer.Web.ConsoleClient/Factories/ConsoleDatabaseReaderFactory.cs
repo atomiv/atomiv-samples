@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TextAnalyzer.Web.ConsoleClient.Interface;
 using TextAnalyzer.Web.ConsoleClient.Readers;
 

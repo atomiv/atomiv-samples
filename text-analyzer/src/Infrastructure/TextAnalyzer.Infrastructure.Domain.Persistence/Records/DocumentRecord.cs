@@ -1,7 +1,5 @@
 ﻿using Optivem.Atomiv.Infrastructure.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TextAnalyzer.Infrastructure.Domain.Persistence.Records
 {

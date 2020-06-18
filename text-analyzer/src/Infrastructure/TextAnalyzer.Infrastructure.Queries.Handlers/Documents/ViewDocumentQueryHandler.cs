@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Optivem.Atomiv.Core.Application;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TextAnalyzer.Core.Application.Queries.Documents;
 using TextAnalyzer.Infrastructure.Domain.Persistence.Records;

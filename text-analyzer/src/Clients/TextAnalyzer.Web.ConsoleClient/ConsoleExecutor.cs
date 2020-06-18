@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TextAnalyzer.Core.Application.Commands.Documents;
 using TextAnalyzer.Web.ConsoleClient.Interface;

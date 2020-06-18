@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Optivem.Atomiv.Core.Common.Serialization;
 using Optivem.Atomiv.Infrastructure.NewtonsoftJson;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
 using TextAnalyzer.Web.ConsoleClient.Interface;
 using TextAnalyzer.Web.RestClient;
 using TextAnalyzer.Web.RestClient.Interface;
@@ -51,9 +48,6 @@ namespace TextAnalyzer.Web.ConsoleClient
 
             services.AddTransient<IHttpClientFactory, HttpClientFactory>();
             services.AddHttpClient<IDocumentControllerClient, DocumentControllerClient>();
-            services.AddHttpClient<ICustomerControllerClient, CustomerControllerClient>();
-            services.AddHttpClient<IOrderControllerClient, OrderControllerClient>();
-            services.AddHttpClient<IProductControllerClient, ProductControllerClient>();
             services.AddTransient<IApiClient, ApiClient>();
 
             services.AddTransient<IExecutor, ConsoleExecutor>();
